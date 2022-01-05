@@ -50,9 +50,8 @@ Notifyimagegrid has a dynamic layout system. If you have 5 items but set the col
 **Notifyimagegrid** has a label assigned using the [aria-label](https://github.com/adaptlearning/adapt_framework/wiki/Aria-Labels) attribute: **ariaRegion**. These labels are not visible elements. They are utilized by assistive technology such as screen readers. This label is included within the *example.json* and will need adding to the _globals in *course.json*.
 
 ## Limitations
-
-<p><strong>DOES NOT WORK WITH FRAMEWORK VERSION 5</strong>. Please go to the Framework 5 version of this component on my other github site...</p>
-<p>[github.com/zarek3333/adapt-notify-imagegrid](https://github.com/zarek3333/adapt-notify-imagegrid)</p>
+Currently not tested in Adapt Authoring Tool.
+Notifyimagegrid automatically switches to 2 columns in mobile mode for the best user experience however this can be overridden in the css.
 
 ----------------------------
 **Version number:**  1.0.0

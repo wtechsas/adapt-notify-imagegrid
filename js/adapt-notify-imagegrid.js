@@ -16,10 +16,11 @@ define([
         events: function() {
             return Adapt.device.touch == true ? {
                 'inview': 'inview',
-                'click img' : 'gridnotifyPopup'
+                'click button' : 'gridnotifyPopup'
             } : {
                 'inview': 'inview',
-                'mouseover img' : 'gridnotifyPopup'
+                'mouseover button': 'completePopup',
+                'click button' : 'gridnotifyPopup'
             }
         },
 
@@ -55,7 +56,6 @@ define([
 
                 if (this._isVisibleTop && this._isVisibleBottom) {
                     this.$('.component-widget').off('inview');
-                    //this.setCompletionStatus();
                     this.completePopup();
                 }
 
@@ -135,6 +135,28 @@ define([
             var mycurrentid = '.' + this.model.get('_id');
             var howmanygridimg = $(mycurrentid + " .howmanygrid").length;
             var howmanystr = $(mycurrentid + " .totalgrid").text();
+            var count = howmanystr;
+
+            var index = $(event.currentTarget).parent().data('index');
+            var mypopuptitle = this.model.get('_items')[index]._graphic.title;
+            var mypopupmsg = this.model.get('_items')[index]._graphic.gridmessage;
+
+            var imgridObject = {
+                title: mypopuptitle,
+                body: mypopupmsg,
+                _classes: ' imgnotifygrid'
+            };
+
+            if (!$(event.currentTarget).hasClass("click4count")) {
+                count++;
+                $(mycurrentid + " .totalgrid").html(""+count);
+            }else{
+                //DO NOT COUNT
+            }
+
+            Adapt.trigger('notify:popup', imgridObject);
+
+            $(event.currentTarget).addClass("click4count");
             
             if (howmanystr >= howmanygridimg ) {
                 this.setCompletionStatus();
